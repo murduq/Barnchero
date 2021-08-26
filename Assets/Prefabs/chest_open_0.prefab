@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3032774202676029937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.44, y: 2.51, z: 0}
-  m_LocalScale: {x: 4.214434, y: 4.214434, z: 4.214434}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
+  spawnedEnemy: {fileID: 0}
+  allEnemies: []
 --- !u!61 &3032774202676029949
 BoxCollider2D:
   m_ObjectHideFlags: 0
