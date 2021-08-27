@@ -118,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9518d31cd5432344942bd9fe76415aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 8
+  speed: 1.27
   spawnedEnemy: {fileID: 0}
   allEnemies: []
 --- !u!61 &3032774202676029949

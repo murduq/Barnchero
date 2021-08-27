@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int hp = 8;
+    public float speed = 1;
     public GameObject spawnedEnemy;
     public GameObject[] allEnemies;
     private bool spawning;
@@ -20,6 +21,11 @@ public class EnemyController : MonoBehaviour
             }
             spawning = true;
         }
+
+        if (this.tag == "Enemy"){
+            Move();
+        }
+
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -32,6 +38,14 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    void Move()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Vector2 target = players[0].transform.position;
+        float moveSpeed = speed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed);
     }
 
     IEnumerator spawn()

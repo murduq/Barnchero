@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         
         shot = Instantiate(bullet.GetComponent<Rigidbody2D>(), rb.position, rb.transform.rotation) as Rigidbody2D;
         shot.velocity = transform.up * 10;
-        cooldown = 0.5f;
+        cooldown = 0.4f;
         shotVelocity = shot.velocity;
     }
   
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
       }
       if (allEnemies.Length == 0){
           transform.up = new Vector2 (0,1);
-          cooldown = 0.5f;
+          cooldown = 0.4f;
       }
   }
 
