@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public int hp = 8;
-    public float speed = 1;
+    public int hp;
+    public float speed;
     public GameObject spawnedEnemy;
     public GameObject[] allEnemies;
     private bool spawning;
+    public HealthController healthBar;
     
+    void Awake()
+    {
+        hp = Random.Range(1, 10);
+        speed = Random.Range(0.5f, 1.5f);
+        healthBar.SetMaxHP(hp);
+    }
+
     void Update() 
     {
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -33,6 +41,7 @@ public class EnemyController : MonoBehaviour
         if (collision.collider.tag == "Bullet"){
             Destroy(collision.collider.gameObject);
             hp -= 2;
+            healthBar.SetHP(hp);
         }
         if (hp <= 0)
         {
