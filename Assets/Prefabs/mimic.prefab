@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1538072275856966968}
   - component: {fileID: 1538072275856966951}
   - component: {fileID: 1538072275856966950}
+  - component: {fileID: 2195728563395789898}
   m_Layer: 0
   m_Name: mimic
   m_TagString: Enemy
@@ -251,6 +252,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41, y: 0.31}
   m_EdgeRadius: 0
+--- !u!50 &2195728563395789898
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538072275856966949}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!1001 &1538072274124935242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,6 +454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Value
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003170350965519784, guid: 67566b3b6064e24468e8d868651974ae,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67566b3b6064e24468e8d868651974ae, type: 3}

@@ -458,10 +458,8 @@ MonoBehaviour:
   moveY: 0
   bullet: {fileID: 412075523698053082, guid: 4af7408ef9c698a4aaa08632764f0caf, type: 3}
   cooldown: 0
-  shotVelocity: {x: 0, y: 0}
   strafeProtection: 0
   iFrameTimer: 0
-  currVelocity: {x: 0, y: 0}
   maxSpeed: 5
   health: 10
   maxHealth: 10
