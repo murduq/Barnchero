@@ -15,13 +15,17 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D shot;
 
+    public int damage = 2;
+
+    public float maxCooldown = 0.4f;
+
     public float cooldown;
 
     public float strafeProtection;
 
     public float iFrameTimer;
 
-    public int maxSpeed = 5;
+    public float maxSpeed = 5f;
 
     public int health;
 
@@ -74,11 +78,13 @@ public class PlayerController : MonoBehaviour
         shot =
             Instantiate(bullet.GetComponent<Rigidbody2D>(),
             rb.position +
-            new Vector2(transform.up.x * 0.5f, transform.up.y * 0.5f),
+            new Vector2(transform.up.x * 0.6f, transform.up.y * 0.6f),
             rb.transform.rotation) as
             Rigidbody2D;
         shot.velocity = transform.up * 10;
-        cooldown = 0.4f;
+        BulletController bull = shot.GetComponent<BulletController>();
+        bull.setDamage (damage);
+        cooldown = maxCooldown;
     }
 
     void FindClosestEnemy()
@@ -102,7 +108,7 @@ public class PlayerController : MonoBehaviour
         if (allEnemies.Length == 0)
         {
             transform.up = new Vector2(0, 1);
-            cooldown = 0.4f;
+            cooldown = maxCooldown;
         }
     }
 
@@ -126,6 +132,43 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+        }
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Physics2D
+                .IgnoreCollision(collision
+                    .gameObject
+                    .GetComponent<Collider2D>(),
+                this.GetComponent<Collider2D>());
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D trigger)
+    {
+        switch (trigger.gameObject.tag)
+        {
+            case "Health":
+                health += 2;
+                if (maxHealth < health)
+                {
+                    maxHealth = health;
+                    healthBar.SetMaxHP (maxHealth);
+                }
+                healthBar.SetHP (health);
+                Destroy(trigger.gameObject);
+                break;
+            case "Damage":
+                Destroy(trigger.gameObject);
+                damage = (int)(damage * 1.5f);
+                break;
+            case "Speed":
+                Destroy(trigger.gameObject);
+                maxSpeed *= 1.5f;
+                break;
+            case "Burn":
+                Destroy(trigger.gameObject);
+                maxCooldown *= 0.8f;
+                break;
         }
     }
 
