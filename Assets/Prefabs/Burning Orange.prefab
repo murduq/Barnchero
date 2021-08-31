@@ -98,7 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f653c58522c834f9d284503421d511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: {fileID: 0}
+  lifetime: 5
+  timer: 0
+  players: []
+  speed: 10
 --- !u!58 &2574590673940090518
 CircleCollider2D:
   m_ObjectHideFlags: 0
