@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         shot =
             Instantiate(bullet.GetComponent<Rigidbody2D>(),
             rb.position +
-            new Vector2(transform.up.x * 0.6f, transform.up.y * 0.6f),
+            new Vector2(transform.up.x * 0.75f, transform.up.y * 0.75f),
             rb.transform.rotation) as
             Rigidbody2D;
         shot.velocity = transform.up * 10;

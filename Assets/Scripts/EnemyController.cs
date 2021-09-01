@@ -18,11 +18,29 @@ public class EnemyController : MonoBehaviour
 
     public GameObject[] dropList;
 
+    public string[] enemyTypes = {"melee", "ranged"};
+
+    public string type;
+
+    private Rigidbody2D shot;
+
+    public int damage;
+
+    public float cooldown;
+
+    public GameObject bullet;
+
+    private Rigidbody2D rb;
+
     void Awake()
     {
-        hp = Random.Range(1, 10);
-        speed = Random.Range(0.5f, 1.5f);
+        rb = GetComponent<Rigidbody2D>();
+        hp = Random.Range(1, 11);
         healthBar.SetMaxHP (hp);
+        speed = Random.Range(0.5f, 1.5f);
+        type = enemyTypes[Random.Range(0,enemyTypes.Length)];
+        damage = 2;
+        cooldown = speed;
     }
 
     void Update()
@@ -67,8 +85,24 @@ public class EnemyController : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Vector2 target = players[0].transform.position;
         float moveSpeed = speed * Time.deltaTime;
-        transform.position =
-            Vector2.MoveTowards(transform.position, target, moveSpeed);
+        switch (type){
+            case "melee":
+                transform.position =
+                    Vector2.MoveTowards(transform.position, target, moveSpeed);
+                break;
+            case "ranged":
+                transform.up = target - new Vector2(transform.position.x, -transform.position.y);
+                if (cooldown > 0)
+                {
+                    cooldown -= Time.deltaTime;
+                }
+                else {
+                    shoot(target);
+                }
+                
+            break;
+        }
+        
     }
 
     IEnumerator spawn()
@@ -110,5 +144,20 @@ public class EnemyController : MonoBehaviour
                 Quaternion.identity);
                 break;
         }
+    }
+
+    void shoot(Vector2 target)
+    {
+        
+        shot =
+            Instantiate(bullet.GetComponent<Rigidbody2D>(),
+            rb.position +
+            new Vector2(transform.up.x * 0.75f, transform.up.y * 0.75f),
+            rb.transform.rotation) as
+            Rigidbody2D;
+        shot.velocity = transform.up * 3;
+        BulletController bull = shot.GetComponent<BulletController>();
+        bull.setDamage (damage);
+        cooldown = speed;
     }
 }

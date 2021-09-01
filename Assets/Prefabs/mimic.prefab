@@ -231,6 +231,13 @@ MonoBehaviour:
   - {fileID: 8595607208208858719, guid: 9385f2d84024fcc4f843f8d4dfac45fd, type: 3}
   - {fileID: 7673680478587544217, guid: a2c74f4ada6f2d546b76b8fc5e838f60, type: 3}
   - {fileID: 2574590673940090514, guid: 7705c59e97affe84aaa26ea769eb2dc6, type: 3}
+  enemyTypes:
+  - melee
+  - ranged
+  type: 
+  damage: 0
+  cooldown: 0
+  bullet: {fileID: 412075523698053082, guid: 4af7408ef9c698a4aaa08632764f0caf, type: 3}
 --- !u!61 &1538072275856966950
 BoxCollider2D:
   m_ObjectHideFlags: 0
