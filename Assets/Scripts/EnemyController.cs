@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
 
     public GameObject[] dropList;
 
-    public string[] enemyTypes = {"melee", "ranged"};
+    public string[] enemyTypes = {"ranged"};
 
     public string type;
 
@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour
                     Vector2.MoveTowards(transform.position, target, moveSpeed);
                 break;
             case "ranged":
-                transform.up = target - new Vector2(transform.position.x, -transform.position.y);
+                transform.up = target - new Vector2(transform.position.x, transform.position.y);
                 if (cooldown > 0)
                 {
                     cooldown -= Time.deltaTime;

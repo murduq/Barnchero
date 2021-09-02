@@ -237,7 +237,7 @@ MonoBehaviour:
   type: 
   damage: 0
   cooldown: 0
-  bullet: {fileID: 412075523698053082, guid: 4af7408ef9c698a4aaa08632764f0caf, type: 3}
+  bullet: {fileID: 5547938839746554090, guid: 9d3a4977063af684ea49f0f79ad11c05, type: 3}
 --- !u!61 &1538072275856966950
 BoxCollider2D:
   m_ObjectHideFlags: 0
