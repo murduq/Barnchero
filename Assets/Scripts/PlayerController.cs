@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D shot;
 
-    public int damage = 2;
+    public int damage = 10;
 
     public float maxCooldown = 0.4f;
 
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public int health;
 
-    public int maxHealth = 10;
+    public int maxHealth = 999999999;
 
     public bool isHit = false;
 
@@ -171,7 +171,6 @@ public class PlayerController : MonoBehaviour
     {
         health = newHp;
         TakeDamage();
-        Debug.Log("u got shot lol get rekt");
     }
 
     public int getHP()
@@ -184,7 +183,6 @@ public class PlayerController : MonoBehaviour
             isHit = true;
             iFrameTimer = 1.0f;
             healthBar.SetHP (health);
-            Debug.Log("flashing u now 😳");
             StartCoroutine(iFrameFlash());
             if (health <= 0)
             {

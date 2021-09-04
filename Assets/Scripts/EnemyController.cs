@@ -34,6 +34,8 @@ public class EnemyController : MonoBehaviour
 
     public GameObject spawnCircle;
 
+    public int roundNumber;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +45,7 @@ public class EnemyController : MonoBehaviour
         type = enemyTypes[Random.Range(0,enemyTypes.Length)];
         damage = 2;
         cooldown = speed;
+        roundNumber = 1;
     }
 
     void Update()
@@ -51,10 +54,21 @@ public class EnemyController : MonoBehaviour
 
         if (allEnemies.Length == 0 && !spawning)
         {
-            for (int i = 0; i <= Random.Range(1, 5); i++)
+            roundNumber += 1;
+            Debug.Log("round " + roundNumber.ToString() + " starting");
+            Debug.Log(roundNumber % 5);
+            if (roundNumber % 5 == 0)
             {
-                StartCoroutine(spawn());
+                StartCoroutine(spawnBoss());
             }
+            else
+            {
+                
+                for (int i = 0; i <= Random.Range(1, 5); i++)
+                {
+                    StartCoroutine(spawn());
+                }
+            }          
             spawning = true;
         }
 
@@ -109,12 +123,25 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator spawn()
     {
-        //generate coords and draw circle here
         Vector2 coords = new Vector2(Random.Range(-3.7f, 3.7f), Random.Range(-4.3f, 4.3f));
         Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
         Instantiate(spawnedEnemy, coords, Quaternion.identity);
         spawning = false;
+         
+    }
+
+    IEnumerator spawnBoss()
+    {
+        Vector2 coords = new Vector2(0f, 4f);
+        Instantiate(spawnCircle, coords, Quaternion.identity);
+        yield return new WaitForSeconds(1);
+        Instantiate(spawnedEnemy, coords, Quaternion.identity);
+        spawning = false;
+        GameObject[] boss = GameObject.FindGameObjectsWithTag("Enemy");
+        boss[0].GetComponent<EnemyController>().setHealth(50);
+        healthBar.SetMaxHP(hp);
+        healthBar.SetHP(hp);
     }
 
     void Drop(float dropNum)
@@ -158,4 +185,10 @@ public class EnemyController : MonoBehaviour
         bull.setDamage (damage);
         cooldown = speed;
     }
+
+    public void setHealth(int h)
+    {
+        hp = h;
+    }
+
 }
