@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Bullet")
+        if (collision.collider.name == "player_bullet(Clone)")
         {
             BulletController hit =
                 collision.gameObject.GetComponent<BulletController>();
@@ -116,29 +116,24 @@ public class EnemyController : MonoBehaviour
 
     void Drop(float dropNum)
     {
-        Debug.Log (dropNum);
         switch (dropNum)
         {
             case float n when n <= 0.25f:
-                Debug.Log("Dropping Apple");
                 Instantiate(dropList[0],
                 transform.position,
                 Quaternion.identity);
                 break;
             case float n when n <= 0.5f:
-                Debug.Log("Dropping Melon");
                 Instantiate(dropList[1],
                 transform.position,
                 Quaternion.identity);
                 break;
             case float n when n <= 0.75f:
-                Debug.Log("Dropping Carrot");
                 Instantiate(dropList[2],
                 transform.position,
                 Quaternion.identity);
                 break;
             case float n when n <= 1f:
-                Debug.Log("Dropping Orange");
                 Instantiate(dropList[3],
                 transform.position,
                 Quaternion.identity);

@@ -116,15 +116,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && !isHit)
         {
-            isHit = true;
-            iFrameTimer = 1.0f;
             health -= 2;
-            healthBar.SetHP (health);
-            StartCoroutine(iFrameFlash());
-        }
-        if (health == 0)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            TakeDamage();
         }
     }
 
@@ -173,4 +166,31 @@ public class PlayerController : MonoBehaviour
         }
         this.GetComponent<Renderer>().enabled = true;
     }
+
+    public void setHP(int newHp)
+    {
+        health = newHp;
+        TakeDamage();
+        Debug.Log("u got shot lol get rekt");
+    }
+
+    public int getHP()
+    {
+        return health;
+    }
+
+    void TakeDamage(){
+        if(!isHit){
+            isHit = true;
+            iFrameTimer = 1.0f;
+            healthBar.SetHP (health);
+            Debug.Log("flashing u now 😳");
+            StartCoroutine(iFrameFlash());
+            if (health <= 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+    }
+
 }

@@ -160,6 +160,13 @@ MonoBehaviour:
   healthBar: {fileID: 749277704184556459, guid: 67566b3b6064e24468e8d868651974ae,
     type: 3}
   dropList: []
+  enemyTypes:
+  - melee
+  - ranged
+  type: 
+  damage: 0
+  cooldown: 0
+  bullet: {fileID: 0}
 --- !u!4 &426505726
 Transform:
   m_ObjectHideFlags: 0

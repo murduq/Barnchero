@@ -12,6 +12,13 @@ public class BulletController : MonoBehaviour
     public Collider2D myCollider;
     public GameObject[] bullets;
 
+    public GameObject[] enemies;
+
+    public PlayerController player;
+
+    public string enemyBulletName = "enemy_bullet(Clone)";
+    public string playerBulletName = "player_bullet(Clone)";
+
     void Awake()
     {
         Destroy(this.gameObject, lifetime);
@@ -20,6 +27,13 @@ public class BulletController : MonoBehaviour
         foreach (GameObject obj in bullets) {
             Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+        if (this.gameObject.name == enemyBulletName){
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject obj in enemies) {
+                Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            }
+        }
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -28,8 +42,10 @@ public class BulletController : MonoBehaviour
         {
             
         }
-        else if(collision.gameObject.tag == "Player"){
-            
+        if(collision.gameObject.tag == "Player" && this.gameObject.name == enemyBulletName){
+            Destroy(this.gameObject);
+            player = collision.gameObject.GetComponent<PlayerController>();
+            player.setHP(player.getHP()-damage);
         }
     }
 
