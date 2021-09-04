@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public GameObject spawnCircle;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -107,10 +109,11 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator spawn()
     {
+        //generate coords and draw circle here
+        Vector2 coords = new Vector2(Random.Range(-3.7f, 3.7f), Random.Range(-4.3f, 4.3f));
+        Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
-        Instantiate(spawnedEnemy,
-        new Vector2(Random.Range(-3.7f, 3.7f), Random.Range(-4.3f, 4.3f)),
-        Quaternion.identity);
+        Instantiate(spawnedEnemy, coords, Quaternion.identity);
         spawning = false;
     }
 
