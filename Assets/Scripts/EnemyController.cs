@@ -133,15 +133,14 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator spawnBoss()
     {
+        hp = 50;
         Vector2 coords = new Vector2(0f, 4f);
         Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
         Instantiate(spawnedEnemy, coords, Quaternion.identity);
         spawning = false;
         GameObject[] boss = GameObject.FindGameObjectsWithTag("Enemy");
-        boss[0].GetComponent<EnemyController>().setHealth(50);
-        healthBar.SetMaxHP(hp);
-        healthBar.SetHP(hp);
+        boss[0].GetComponent<EnemyController>().setHealth(hp);      
     }
 
     void Drop(float dropNum)
@@ -189,6 +188,7 @@ public class EnemyController : MonoBehaviour
     public void setHealth(int h)
     {
         hp = h;
+        healthBar.SetMaxHP(hp);
     }
 
 }
