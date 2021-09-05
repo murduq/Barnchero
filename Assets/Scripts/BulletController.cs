@@ -21,6 +21,10 @@ public class BulletController : MonoBehaviour
 
     void Awake()
     {
+        if (this.gameObject.name == enemyBulletName){
+            ignore("Enemy");
+            lifetime = 3.0f;
+        }
         Destroy(this.gameObject, lifetime);
         myCollider = GetComponent<Collider2D>();
         bullets = GameObject.FindGameObjectsWithTag("Bullet");

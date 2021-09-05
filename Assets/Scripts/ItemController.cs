@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    public float lifetime = 5.0f;
+    public float lifetime = 6.0f;
     public float timer;
     public GameObject[] players;
     public float speed = 10f;
@@ -18,7 +18,7 @@ public class ItemController : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if(timer <=1.5f){
+        if(timer <=2.5f){
             StartCoroutine(iFrameFlash());
         }
         if (Vector2.Distance(players[0].transform.position, transform.position) <= 1.75f){
