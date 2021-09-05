@@ -10,6 +10,7 @@ TagManager:
   - Speed
   - Damage
   - Burn
+  - Wall
   layers:
   - Default
   - TransparentFX

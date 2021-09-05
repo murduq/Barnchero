@@ -27,20 +27,19 @@ public class BulletController : MonoBehaviour
         foreach (GameObject obj in bullets) {
             Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+        
         if (this.gameObject.name == enemyBulletName){
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject obj in enemies) {
-                Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            }
+            ignore("Enemy");
         }
+        ignore("Water");
         
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Wall")
         {
-            
+            Destroy(this.gameObject);
         }
         if(collision.gameObject.tag == "Player" && this.gameObject.name == enemyBulletName){
             Destroy(this.gameObject);
@@ -58,4 +57,12 @@ public class BulletController : MonoBehaviour
     {
         return this.damage;
     }
+
+    void ignore(string toIgnore){        
+        enemies = GameObject.FindGameObjectsWithTag(toIgnore);
+        foreach (GameObject obj in enemies) {
+            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }        
+    }
+
 }

@@ -59,13 +59,14 @@ public class EnemyController : MonoBehaviour
             Debug.Log(roundNumber % 5);
             if (roundNumber % 5 == 0)
             {
+                clearBullets();
                 StartCoroutine(spawnBoss());
             }
             else
             {
-                
+                clearBullets();
                 for (int i = 0; i <= Random.Range(1, 5); i++)
-                {
+                {                 
                     StartCoroutine(spawn());
                 }
             }          
@@ -127,8 +128,7 @@ public class EnemyController : MonoBehaviour
         Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
         Instantiate(spawnedEnemy, coords, Quaternion.identity);
-        spawning = false;
-         
+        spawning = false;         
     }
 
     IEnumerator spawnBoss()
@@ -189,6 +189,17 @@ public class EnemyController : MonoBehaviour
     {
         hp = h;
         healthBar.SetMaxHP(hp);
+    }
+
+    void clearBullets()
+    {
+        Debug.Log("Attempting to clear...");
+        GameObject[] remaining = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject obj in remaining) {
+            if (obj.name == "enemy_bullet(Clone)"){
+                Destroy(obj);
+            }
+        }
     }
 
 }
