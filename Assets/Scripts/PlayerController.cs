@@ -115,9 +115,9 @@ public class PlayerController : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy" && !isHit)
-        {
-            health -= 2;
-            TakeDamage();
+        {           
+            //TODO: add damage value to enemy, not here
+            TakeDamage(2);
         }
     }
 
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
     public void setHP(int newHp)
     {
         health = newHp;
-        TakeDamage();
+        TakeDamage(0);
     }
 
     public int getHP()
@@ -178,9 +178,10 @@ public class PlayerController : MonoBehaviour
         return health;
     }
 
-    void TakeDamage(){
+    public void TakeDamage(int damage){
         if(!isHit){
             isHit = true;
+            health -= damage;
             iFrameTimer = 1.0f;
             healthBar.SetHP (health);
             StartCoroutine(iFrameFlash());

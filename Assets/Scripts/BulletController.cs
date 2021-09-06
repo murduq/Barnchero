@@ -48,7 +48,7 @@ public class BulletController : MonoBehaviour
         if(collision.gameObject.tag == "Player" && this.gameObject.name == enemyBulletName){
             Destroy(this.gameObject);
             player = collision.gameObject.GetComponent<PlayerController>();
-            player.setHP(player.getHP()-damage);
+            player.TakeDamage(damage);
         }
     }
 

@@ -8,12 +8,22 @@ public class HealthController : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public Text hpText;
+
+    private void Awake()
+    {
+        
+    }
+
+    private void Update()
+    {
+        hpText.text = slider.value.ToString();
+    }
 
     public void SetMaxHP(int hp)
     {
         slider.maxValue = hp;
-        slider.value = hp;
-        fill.color = gradient.Evaluate(1f);
+        SetHP(hp);
     }
 
     public void SetHP(int hp)

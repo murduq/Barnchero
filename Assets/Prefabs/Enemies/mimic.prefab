@@ -81,7 +81,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 200
   m_PresetInfoIsWorld: 1
 --- !u!114 &1538072274701517344
 MonoBehaviour:
@@ -238,6 +238,8 @@ MonoBehaviour:
   damage: 0
   cooldown: 0
   bullet: {fileID: 5547938839746554090, guid: 9d3a4977063af684ea49f0f79ad11c05, type: 3}
+  spawnCircle: {fileID: 0}
+  roundNumber: 0
 --- !u!61 &1538072275856966950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -292,6 +294,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1538072274701517359}
     m_Modifications:
+    - target: {fileID: 749277704184556459, guid: 67566b3b6064e24468e8d868651974ae,
+        type: 3}
+      propertyPath: hpText
+      value: 
+      objectReference: {fileID: 4592116641949397063}
     - target: {fileID: 749277704184556459, guid: 67566b3b6064e24468e8d868651974ae,
         type: 3}
       propertyPath: gradient.ctime0
@@ -490,5 +497,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34cc08e58753b3f4483f917d2dc01c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4592116641949397063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3090082137032204301, guid: 67566b3b6064e24468e8d868651974ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538072274124935242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
