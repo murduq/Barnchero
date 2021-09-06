@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1818360609 &117692974099728965
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274732688893159827}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
 --- !u!1001 &2982066027243560026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,3 +178,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 150a6f07574a2db48abbcb5fd891ba40, type: 3}
+--- !u!1 &4274732688893159827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1310701405705008585, guid: 150a6f07574a2db48abbcb5fd891ba40,
+    type: 3}
+  m_PrefabInstance: {fileID: 2982066027243560026}
+  m_PrefabAsset: {fileID: 0}
