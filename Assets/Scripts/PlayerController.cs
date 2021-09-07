@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         healthBar.SetMaxHP (maxHealth);
         health = maxHealth;
+        BulletController bull = bullet.GetComponent<BulletController>();
+        bull.resetRicochet();
     }
 
     void Update()
@@ -151,6 +153,11 @@ public class PlayerController : MonoBehaviour
             case "Burn":
                 Destroy(trigger.gameObject);
                 maxCooldown *= 0.8f;
+                break;
+            case "Ricochet":
+                Destroy(trigger.gameObject);
+                BulletController bull = bullet.GetComponent<BulletController>();
+                bull.addRicochet();
                 break;
         }
     }

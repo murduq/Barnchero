@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
             BulletController hit =
                 collision.gameObject.GetComponent<BulletController>();
 
-            Destroy(collision.collider.gameObject);
+            //Destroy(collision.collider.gameObject);
             hp -= hit.getDamage();
             healthBar.SetHP (hp);
         }
