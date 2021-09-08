@@ -21,9 +21,11 @@ public class BulletController : MonoBehaviour
     public GameObject closestEnemy = null;
     public GameObject secondClosest = null;
     public GameObject[] allEnemies;
+    public Rigidbody2D rb;
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (this.gameObject.name == enemyBulletName){
             ignore("Enemy");
             lifetime = 3.0f;
@@ -44,24 +46,25 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        float distanceToCloseEnemy = Mathf.Infinity;
+        //move to enemycontroller
+        // float distanceToCloseEnemy = Mathf.Infinity;
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (allEnemies.Length > 2){
-            closestEnemy = allEnemies[0];
-            secondClosest = allEnemies[1];                
-            foreach (GameObject currEnemy in allEnemies)
-            {
-                float distanceToEnemy =
-                    (currEnemy.transform.position - this.transform.position)
-                        .sqrMagnitude;
-                if (distanceToEnemy < distanceToCloseEnemy)
-                {
-                    distanceToCloseEnemy = distanceToEnemy;
-                    secondClosest = closestEnemy;
-                    closestEnemy = currEnemy;
-                }
-            }
-        }
+        // if (allEnemies.Length > 2){
+        //     closestEnemy = allEnemies[0];
+        //     secondClosest = allEnemies[1];                
+        //     foreach (GameObject currEnemy in allEnemies)
+        //     {
+        //         float distanceToEnemy =
+        //             (currEnemy.transform.position - this.transform.position)
+        //                 .sqrMagnitude;
+        //         if (distanceToEnemy < distanceToCloseEnemy)
+        //         {
+        //             distanceToCloseEnemy = distanceToEnemy;
+        //             secondClosest = closestEnemy;
+        //             closestEnemy = currEnemy;
+        //         }
+        //     }
+        // }
         
     }
     
@@ -81,8 +84,12 @@ public class BulletController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
             if(ricochets > 0) {
-                //this.transform.position = allEnemies[1].transform.position;
-                this.transform.position = secondClosest.transform.position;
+                GameObject target = collision.gameObject.GetComponent<EnemyController>().getClosestEnemy();
+                // Vector2 newDirection = this.transform.position - target.transform.position;
+                // this.transform.position = 
+                //     collision.gameObject.transform.position + new Vector3(0.5f,0.5f);
+                // rb.velocity = newDirection * 10f;
+                this.transform.position = target.transform.position;
                 ricochets -= 1;
             }
             else {

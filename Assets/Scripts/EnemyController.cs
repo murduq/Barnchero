@@ -36,6 +36,10 @@ public class EnemyController : MonoBehaviour
 
     public int roundNumber;
 
+    public GameObject closestEnemy;
+    public GameObject secondClosest;
+    public float distanceToCloseEnemy;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,6 +50,9 @@ public class EnemyController : MonoBehaviour
         damage = 2;
         cooldown = speed;
         roundNumber = 1;
+        distanceToCloseEnemy = Mathf.Infinity;
+        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        closestEnemy = null;
     }
 
     void Update()
@@ -71,6 +78,23 @@ public class EnemyController : MonoBehaviour
                 }
             }          
             spawning = true;
+        }
+        
+        distanceToCloseEnemy = Mathf.Infinity;
+        if (allEnemies.Length >= 2){                            
+            foreach (GameObject currEnemy in allEnemies)
+            {
+                float distanceToEnemy =
+                    (currEnemy.transform.position - this.transform.position).sqrMagnitude;
+                if (distanceToEnemy < distanceToCloseEnemy && distanceToEnemy != 0)
+                {
+                    distanceToCloseEnemy = distanceToEnemy;                    
+                    closestEnemy = currEnemy;
+                }
+            }
+        }
+        else {
+            closestEnemy = this.gameObject;
         }
 
         if (this.tag == "Enemy")
@@ -200,6 +224,11 @@ public class EnemyController : MonoBehaviour
                 Destroy(obj);
             }
         }
+    }
+
+    public GameObject getClosestEnemy()
+    {
+        return closestEnemy;
     }
 
 }
