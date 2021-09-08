@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
 
     public GameObject[] dropList;
 
-    public string[] enemyTypes = {"ranged"};
+    public string[] enemyTypes = {"melee", "ranged"};
 
     public string type;
 
@@ -171,23 +171,28 @@ public class EnemyController : MonoBehaviour
     {
         switch (dropNum)
         {
-            case float n when n <= 0.25f:
+            case float n when n <= 0.2f:
                 Instantiate(dropList[0],
                 transform.position,
                 Quaternion.identity);
                 break;
-            case float n when n <= 0.5f:
+            case float n when n <= 0.4f:
                 Instantiate(dropList[1],
                 transform.position,
                 Quaternion.identity);
                 break;
-            case float n when n <= 0.75f:
+            case float n when n <= 0.6f:
                 Instantiate(dropList[2],
                 transform.position,
                 Quaternion.identity);
                 break;
-            case float n when n <= 1f:
+            case float n when n <= 0.8f:
                 Instantiate(dropList[3],
+                transform.position,
+                Quaternion.identity);
+                break;
+            case float n when n <= 1f:
+                Instantiate(dropList[4],
                 transform.position,
                 Quaternion.identity);
                 break;

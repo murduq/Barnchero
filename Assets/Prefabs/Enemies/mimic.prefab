@@ -231,6 +231,7 @@ MonoBehaviour:
   - {fileID: 8595607208208858719, guid: 9385f2d84024fcc4f843f8d4dfac45fd, type: 3}
   - {fileID: 7673680478587544217, guid: a2c74f4ada6f2d546b76b8fc5e838f60, type: 3}
   - {fileID: 2574590673940090514, guid: 7705c59e97affe84aaa26ea769eb2dc6, type: 3}
+  - {fileID: 8794680280339398898, guid: 876cac8a30465904ea73880f6f9c6f18, type: 3}
   enemyTypes:
   - melee
   - ranged
@@ -240,6 +241,9 @@ MonoBehaviour:
   bullet: {fileID: 5547938839746554090, guid: 9d3a4977063af684ea49f0f79ad11c05, type: 3}
   spawnCircle: {fileID: 0}
   roundNumber: 0
+  closestEnemy: {fileID: 0}
+  secondClosest: {fileID: 0}
+  distanceToCloseEnemy: 0
 --- !u!61 &1538072275856966950
 BoxCollider2D:
   m_ObjectHideFlags: 0
