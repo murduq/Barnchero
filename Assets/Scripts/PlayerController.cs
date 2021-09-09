@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public HealthController healthBar;
 
+    public int burnDamage;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         health = maxHealth;
         BulletController bull = bullet.GetComponent<BulletController>();
         bull.resetRicochet();
+        burnDamage = 0;
     }
 
     void Update()
@@ -150,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(trigger.gameObject);
                 maxSpeed *= 1.5f;
                 break;
-            case "Burn":
+            case "ASpeed":
                 Destroy(trigger.gameObject);
                 maxCooldown *= 0.8f;
                 break;
@@ -159,6 +162,10 @@ public class PlayerController : MonoBehaviour
                 BulletController bull = bullet.GetComponent<BulletController>();
                 bull.addRicochet();
                 break;
+            case "Burn":
+                Destroy(trigger.gameObject);
+                burnDamage += 1; 
+            break;
         }
     }
 
@@ -197,6 +204,11 @@ public class PlayerController : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+    }
+
+    public int getBurn()
+    {
+        return burnDamage;
     }
 
 }

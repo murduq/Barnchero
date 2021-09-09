@@ -39,6 +39,8 @@ public class EnemyController : MonoBehaviour
     public GameObject closestEnemy;
     public GameObject secondClosest;
     public float distanceToCloseEnemy;
+    public bool burning = false;
+    public int burnDamage;
 
     void Awake()
     {
@@ -58,7 +60,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
         if (allEnemies.Length == 0 && !spawning)
         {
             roundNumber += 1;
@@ -100,6 +101,15 @@ public class EnemyController : MonoBehaviour
         if (this.tag == "Enemy")
         {
             Move();
+            if (burning){
+                hp -= burnDamage;
+                healthBar.SetHP(hp);
+            }
+            if (hp <= 0)
+            {
+                Destroy(this.gameObject);
+                Drop(Random.Range(0f, 5.0f));
+            }
         }
     }
 
@@ -109,16 +119,14 @@ public class EnemyController : MonoBehaviour
         {
             BulletController hit =
                 collision.gameObject.GetComponent<BulletController>();
-
-            //Destroy(collision.collider.gameObject);
             hp -= hit.getDamage();
             healthBar.SetHP (hp);
+            if(hit.getBurn() > 0){
+                burning = true;
+                burnDamage = hit.getBurn();
+            }
         }
-        if (hp <= 0)
-        {
-            Destroy(this.gameObject);
-            Drop(Random.Range(0f, 5.0f));
-        }
+        
     }
 
     void Move()
@@ -165,6 +173,13 @@ public class EnemyController : MonoBehaviour
         spawning = false;
         GameObject[] boss = GameObject.FindGameObjectsWithTag("Enemy");
         boss[0].GetComponent<EnemyController>().setHealth(hp);      
+    }
+
+    IEnumerator burn()
+    {
+        hp -= burnDamage;
+        healthBar.SetHP(hp);
+        yield return new WaitForSeconds(1);
     }
 
     void Drop(float dropNum)

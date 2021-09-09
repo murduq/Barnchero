@@ -23,6 +23,8 @@ public class BulletController : MonoBehaviour
     public GameObject[] allEnemies;
     public Rigidbody2D rb;
 
+    public int burnDamage;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,15 +32,15 @@ public class BulletController : MonoBehaviour
             ignore("Enemy");
             lifetime = 3.0f;
         }
+        else {
+            burnDamage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().getBurn();
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>());
+        }
         Destroy(this.gameObject, lifetime);
         myCollider = GetComponent<Collider2D>();
         bullets = GameObject.FindGameObjectsWithTag("Bullet");
         foreach (GameObject obj in bullets) {
             Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
-        
-        if (this.gameObject.name == enemyBulletName){
-            ignore("Enemy");
         }
         ignore("Water");
         
@@ -46,26 +48,7 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        //move to enemycontroller
-        // float distanceToCloseEnemy = Mathf.Infinity;
-        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        // if (allEnemies.Length > 2){
-        //     closestEnemy = allEnemies[0];
-        //     secondClosest = allEnemies[1];                
-        //     foreach (GameObject currEnemy in allEnemies)
-        //     {
-        //         float distanceToEnemy =
-        //             (currEnemy.transform.position - this.transform.position)
-        //                 .sqrMagnitude;
-        //         if (distanceToEnemy < distanceToCloseEnemy)
-        //         {
-        //             distanceToCloseEnemy = distanceToEnemy;
-        //             secondClosest = closestEnemy;
-        //             closestEnemy = currEnemy;
-        //         }
-        //     }
-        // }
-        
+        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");        
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -84,8 +67,7 @@ public class BulletController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
             if(ricochets > 0) {
-                GameObject target = collision.gameObject.GetComponent<EnemyController>().getClosestEnemy();
-                
+                GameObject target = collision.gameObject.GetComponent<EnemyController>().getClosestEnemy();                
                 this.transform.up = target.transform.position - this.transform.position;
                 this.transform.position = 
                     collision.gameObject.transform.position + this.transform.up * 0.5f;                
@@ -126,6 +108,11 @@ public class BulletController : MonoBehaviour
     {
         maxRicochets = 0;
         ricochets = maxRicochets;
+    }
+
+    public int getBurn()
+    {
+        return burnDamage;
     }
 
 }
