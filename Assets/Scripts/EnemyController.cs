@@ -102,8 +102,7 @@ public class EnemyController : MonoBehaviour
         {
             Move();
             if (burning){
-                hp -= burnDamage;
-                healthBar.SetHP(hp);
+                
             }
             if (hp <= 0)
             {
@@ -121,9 +120,10 @@ public class EnemyController : MonoBehaviour
                 collision.gameObject.GetComponent<BulletController>();
             hp -= hit.getDamage();
             healthBar.SetHP (hp);
-            if(hit.getBurn() > 0){
+            if(hit.getBurn() > 0 && !burning){
                 burning = true;
                 burnDamage = hit.getBurn();
+                StartCoroutine(burn());
             }
         }
         
@@ -177,9 +177,11 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator burn()
     {
-        hp -= burnDamage;
-        healthBar.SetHP(hp);
-        yield return new WaitForSeconds(1);
+        while (burning){
+            hp -= burnDamage;
+            healthBar.SetHP(hp);
+            yield return new WaitForSeconds(0.5f);
+        }            
     }
 
     void Drop(float dropNum)
