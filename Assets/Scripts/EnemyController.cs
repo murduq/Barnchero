@@ -5,54 +5,37 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int hp;
-
     public float speed;
-
     public GameObject spawnedEnemy;
-
     public GameObject[] allEnemies;
-
     private bool spawning;
-
     public HealthController healthBar;
-
     public GameObject[] dropList;
-
-    public string[] enemyTypes = {"melee", "ranged"};
-
+    public string[] enemyTypes = { "melee", "ranged" };
     public string type;
-
     private Rigidbody2D shot;
-
     public int damage;
-
     public float cooldown;
-
     public GameObject bullet;
-
     private Rigidbody2D rb;
-
     public GameObject spawnCircle;
-
     public int roundNumber;
-
     public GameObject closestEnemy;
     public GameObject secondClosest;
     public float distanceToCloseEnemy;
     public bool burning = false;
     public int burnDamage;
     public int baseHealth = 1;
-
     public int numEnemies = 1;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         baseHealth = GameObject.FindGameObjectWithTag("EController").GetComponent<EnemyController>().baseHealth;
-        hp = Random.Range(baseHealth, baseHealth+10);
-        healthBar.SetMaxHP (hp);
+        hp = Random.Range(baseHealth, baseHealth + 10);
+        healthBar.SetMaxHP(hp);
         speed = Random.Range(0.5f, 1.5f);
-        type = enemyTypes[Random.Range(0,enemyTypes.Length)];
+        type = enemyTypes[Random.Range(0, enemyTypes.Length)];
         damage = 2;
         cooldown = speed;
         roundNumber = 1;
@@ -79,43 +62,47 @@ public class EnemyController : MonoBehaviour
             else
             {
                 clearBullets();
-                for (int i = 0; i <= Random.Range(numEnemies, numEnemies+4); i++)
-                {                 
+                for (int i = 0; i <= Random.Range(numEnemies, numEnemies + 4); i++)
+                {
                     StartCoroutine(spawn());
                 }
-            }          
+            }
             spawning = true;
         }
-        
+
         distanceToCloseEnemy = Mathf.Infinity;
-        if (allEnemies.Length >= 2){                            
+        if (allEnemies.Length >= 2)
+        {
             foreach (GameObject currEnemy in allEnemies)
             {
                 float distanceToEnemy =
                     (currEnemy.transform.position - this.transform.position).sqrMagnitude;
                 if (distanceToEnemy < distanceToCloseEnemy && distanceToEnemy != 0)
                 {
-                    distanceToCloseEnemy = distanceToEnemy;                    
+                    distanceToCloseEnemy = distanceToEnemy;
                     closestEnemy = currEnemy;
                 }
             }
         }
-        else {
+        else
+        {
             closestEnemy = this.gameObject;
         }
 
         if (this.tag == "Enemy")
         {
             Move();
-            if (burning){
-                
+            if (burning)
+            {
+
             }
             if (hp <= 0)
             {
                 Destroy(this.gameObject);
-                if (Random.Range(0f, 5.0f) <= 1.1f){
+                if (Random.Range(0f, 5.0f) <= 1.1f)
+                {
                     Drop();
-                }                
+                }
             }
         }
     }
@@ -127,14 +114,15 @@ public class EnemyController : MonoBehaviour
             BulletController hit =
                 collision.gameObject.GetComponent<BulletController>();
             hp -= hit.getDamage();
-            healthBar.SetHP (hp);
-            if(hit.getBurn() > 0 && !burning){
+            healthBar.SetHP(hp);
+            if (hit.getBurn() > 0 && !burning)
+            {
                 burning = true;
                 burnDamage = hit.getBurn();
                 StartCoroutine(burn());
             }
         }
-        
+
     }
 
     void Move()
@@ -142,7 +130,8 @@ public class EnemyController : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Vector2 target = players[0].transform.position;
         float moveSpeed = speed * Time.deltaTime;
-        switch (type){
+        switch (type)
+        {
             case "melee":
                 transform.position =
                     Vector2.MoveTowards(transform.position, target, moveSpeed);
@@ -153,13 +142,14 @@ public class EnemyController : MonoBehaviour
                 {
                     cooldown -= Time.deltaTime;
                 }
-                else {
+                else
+                {
                     shoot(target);
                 }
-                
-            break;
+
+                break;
         }
-        
+
     }
 
     IEnumerator spawn()
@@ -168,7 +158,7 @@ public class EnemyController : MonoBehaviour
         Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
         Instantiate(spawnedEnemy, coords, Quaternion.identity);
-        spawning = false;         
+        spawning = false;
     }
 
     IEnumerator spawnBoss()
@@ -180,26 +170,27 @@ public class EnemyController : MonoBehaviour
         Instantiate(spawnedEnemy, coords, Quaternion.identity);
         spawning = false;
         GameObject[] boss = GameObject.FindGameObjectsWithTag("Enemy");
-        boss[0].GetComponent<EnemyController>().setHealth(hp);      
+        boss[0].GetComponent<EnemyController>().setHealth(hp);
     }
 
     IEnumerator burn()
     {
-        while (burning){
+        while (burning)
+        {
             hp -= burnDamage;
             healthBar.SetHP(hp);
             yield return new WaitForSeconds(0.5f);
-        }            
+        }
     }
 
     void Drop()
     {
-        Instantiate(dropList[Random.Range(0,dropList.Length)],transform.position,Quaternion.identity);
+        Instantiate(dropList[Random.Range(0, dropList.Length)], transform.position, Quaternion.identity);
     }
 
     void shoot(Vector2 target)
     {
-        
+
         shot =
             Instantiate(bullet.GetComponent<Rigidbody2D>(),
             rb.position +
@@ -208,7 +199,7 @@ public class EnemyController : MonoBehaviour
             Rigidbody2D;
         shot.velocity = transform.up * 3;
         BulletController bull = shot.GetComponent<BulletController>();
-        bull.setDamage (damage);
+        bull.setDamage(damage);
         cooldown = speed;
     }
 
@@ -222,8 +213,10 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Attempting to clear...");
         GameObject[] remaining = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject obj in remaining) {
-            if (obj.name == "enemy_bullet(Clone)"){
+        foreach (GameObject obj in remaining)
+        {
+            if (obj.name == "enemy_bullet(Clone)")
+            {
                 Destroy(obj);
             }
         }

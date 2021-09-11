@@ -18,12 +18,14 @@ public class ItemController : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if(timer <=2.5f){
+        if (timer <= 2.5f)
+        {
             StartCoroutine(iFrameFlash());
         }
-        if (Vector2.Distance(players[0].transform.position, transform.position) <= 1.75f){
+        if (Vector2.Distance(players[0].transform.position, transform.position) <= 1.75f)
+        {
             Magnet();
-        }        
+        }
     }
 
     void Magnet()

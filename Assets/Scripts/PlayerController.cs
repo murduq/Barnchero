@@ -6,41 +6,25 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-
     public float moveX;
-
     public float moveY;
-
     public GameObject bullet;
-
     private Rigidbody2D shot;
-
-    public int damage = 10;
-
+    public int damage = 2;
     public float maxCooldown = 0.4f;
-
     public float cooldown;
-
     public float strafeProtection;
-
     public float iFrameTimer;
-
     public float maxSpeed = 5f;
-
     public int health;
-
-    public int maxHealth = 999999999;
-
+    public int maxHealth = 10;
     public bool isHit = false;
-
     public HealthController healthBar;
-
     public int burnDamage;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        healthBar.SetMaxHP (maxHealth);
+        healthBar.SetMaxHP(maxHealth);
         health = maxHealth;
         BulletController bull = bullet.GetComponent<BulletController>();
         bull.resetRicochet();
@@ -88,7 +72,7 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D;
         shot.velocity = transform.up * 10;
         BulletController bull = shot.GetComponent<BulletController>();
-        bull.setDamage (damage);
+        bull.setDamage(damage);
         cooldown = maxCooldown;
     }
 
@@ -120,7 +104,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy" && !isHit)
-        {           
+        {
             //TODO: add damage value to enemy, not here
             TakeDamage(2);
         }
@@ -128,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D trigger)
@@ -140,9 +124,9 @@ public class PlayerController : MonoBehaviour
                 if (maxHealth < health)
                 {
                     maxHealth = health;
-                    healthBar.SetMaxHP (maxHealth);
+                    healthBar.SetMaxHP(maxHealth);
                 }
-                healthBar.SetHP (health);
+                healthBar.SetHP(health);
                 Destroy(trigger.gameObject);
                 break;
             case "Damage":
@@ -164,8 +148,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Burn":
                 Destroy(trigger.gameObject);
-                burnDamage += 1; 
-            break;
+                burnDamage += 1;
+                break;
         }
     }
 
@@ -192,12 +176,14 @@ public class PlayerController : MonoBehaviour
         return health;
     }
 
-    public void TakeDamage(int damage){
-        if(!isHit){
+    public void TakeDamage(int damage)
+    {
+        if (!isHit)
+        {
             isHit = true;
             health -= damage;
             iFrameTimer = 1.0f;
-            healthBar.SetHP (health);
+            healthBar.SetHP(health);
             StartCoroutine(iFrameFlash());
             if (health <= 0)
             {
