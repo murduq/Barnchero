@@ -113,7 +113,9 @@ public class EnemyController : MonoBehaviour
             if (hp <= 0)
             {
                 Destroy(this.gameObject);
-                Drop(Random.Range(0f, 5.0f));
+                if (Random.Range(0f, 5.0f) <= 1.1f){
+                    Drop();
+                }                
             }
         }
     }
@@ -190,36 +192,9 @@ public class EnemyController : MonoBehaviour
         }            
     }
 
-    void Drop(float dropNum)
+    void Drop()
     {
-        switch (dropNum)
-        {
-            case float n when n <= 0.2f:
-                Instantiate(dropList[0],
-                transform.position,
-                Quaternion.identity);
-                break;
-            case float n when n <= 0.4f:
-                Instantiate(dropList[1],
-                transform.position,
-                Quaternion.identity);
-                break;
-            case float n when n <= 0.6f:
-                Instantiate(dropList[2],
-                transform.position,
-                Quaternion.identity);
-                break;
-            case float n when n <= 0.8f:
-                Instantiate(dropList[3],
-                transform.position,
-                Quaternion.identity);
-                break;
-            case float n when n <= 1f:
-                Instantiate(dropList[4],
-                transform.position,
-                Quaternion.identity);
-                break;
-        }
+        Instantiate(dropList[Random.Range(0,dropList.Length)],transform.position,Quaternion.identity);
     }
 
     void shoot(Vector2 target)

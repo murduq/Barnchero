@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 7673680478587544217, guid: a2c74f4ada6f2d546b76b8fc5e838f60, type: 3}
   - {fileID: 2574590673940090514, guid: 7705c59e97affe84aaa26ea769eb2dc6, type: 3}
   - {fileID: 8794680280339398898, guid: 876cac8a30465904ea73880f6f9c6f18, type: 3}
+  - {fileID: 3999946447513251103, guid: 20e927e466cbb5842a5a76f954a3d25d, type: 3}
   enemyTypes:
   - melee
   - ranged
@@ -244,6 +245,10 @@ MonoBehaviour:
   closestEnemy: {fileID: 0}
   secondClosest: {fileID: 0}
   distanceToCloseEnemy: 0
+  burning: 0
+  burnDamage: 0
+  baseHealth: 1
+  numEnemies: 1
 --- !u!61 &1538072275856966950
 BoxCollider2D:
   m_ObjectHideFlags: 0
