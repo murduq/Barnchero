@@ -48,7 +48,10 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");        
+        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (this.gameObject.name == playerBulletName && rb.velocity.magnitude < 6.9f){
+            Destroy(this.gameObject);
+        }        
     }
     
     void OnCollisionEnter2D(Collision2D collision)
