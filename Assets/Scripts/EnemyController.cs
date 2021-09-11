@@ -41,11 +41,15 @@ public class EnemyController : MonoBehaviour
     public float distanceToCloseEnemy;
     public bool burning = false;
     public int burnDamage;
+    public int baseHealth = 1;
+
+    public int numEnemies = 1;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        hp = Random.Range(1, 11);
+        baseHealth = GameObject.FindGameObjectWithTag("EController").GetComponent<EnemyController>().baseHealth;
+        hp = Random.Range(baseHealth, baseHealth+10);
         healthBar.SetMaxHP (hp);
         speed = Random.Range(0.5f, 1.5f);
         type = enemyTypes[Random.Range(0,enemyTypes.Length)];
@@ -69,11 +73,13 @@ public class EnemyController : MonoBehaviour
             {
                 clearBullets();
                 StartCoroutine(spawnBoss());
+                baseHealth += 3;
+                numEnemies += 1;
             }
             else
             {
                 clearBullets();
-                for (int i = 0; i <= Random.Range(1, 5); i++)
+                for (int i = 0; i <= Random.Range(numEnemies, numEnemies+4); i++)
                 {                 
                     StartCoroutine(spawn());
                 }
@@ -165,7 +171,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator spawnBoss()
     {
-        hp = 50;
+        hp = (baseHealth + 10) * 5;
         Vector2 coords = new Vector2(0f, 4f);
         Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
