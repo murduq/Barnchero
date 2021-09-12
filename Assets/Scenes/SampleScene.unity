@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 426505725}
   m_Layer: 0
   m_Name: Enemy Controller
-  m_TagString: Untagged
+  m_TagString: EController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,6 +170,13 @@ MonoBehaviour:
   spawnCircle: {fileID: 8893786536970250825, guid: 9bcdcaee7e31b9d41bd16001c6c82c9a,
     type: 3}
   roundNumber: 0
+  closestEnemy: {fileID: 0}
+  secondClosest: {fileID: 0}
+  distanceToCloseEnemy: 0
+  burning: 0
+  burnDamage: 0
+  baseHealth: 1
+  numEnemies: 1
 --- !u!4 &426505726
 Transform:
   m_ObjectHideFlags: 0
@@ -515,6 +522,7 @@ MonoBehaviour:
   maxHealth: 10
   isHit: 0
   healthBar: {fileID: 475839609}
+  burnDamage: 0
 --- !u!212 &1922073686
 SpriteRenderer:
   m_ObjectHideFlags: 0

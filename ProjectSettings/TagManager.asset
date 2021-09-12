@@ -12,6 +12,9 @@ TagManager:
   - Burn
   - Wall
   - Water
+  - ASpeed
+  - Ricochet
+  - EController
   layers:
   - Default
   - TransparentFX
