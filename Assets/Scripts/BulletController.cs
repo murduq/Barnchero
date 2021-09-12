@@ -75,12 +75,18 @@ public class BulletController : MonoBehaviour
             if (ricochets > 0)
             {
                 GameObject target = collision.gameObject.GetComponent<EnemyController>().getClosestEnemy();
-                this.transform.up = target.transform.position - this.transform.position;
-                this.transform.position =
-                    collision.gameObject.transform.position + this.transform.up * 0.5f;
-                rb.velocity = this.transform.up * 15f;
-                //this.transform.position = target.transform.position;
-                ricochets -= 1;
+                if (target == null){
+                    this.transform.up = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+                }
+                else {
+                    this.transform.up = target.transform.position - this.transform.position;
+                    this.transform.position =
+                        collision.gameObject.transform.position + this.transform.up * 0.5f;
+                    rb.velocity = this.transform.up * 15f;
+                    //this.transform.position = target.transform.position;
+                    ricochets -= 1;
+                }
+                
             }
             else
             {
