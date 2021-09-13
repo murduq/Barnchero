@@ -110,11 +110,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D trigger)
     {
         switch (trigger.gameObject.tag)
