@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         FindClosestEnemy();
         Move();
-        if (rb.velocity == new Vector2(0, 0) && cooldown <= 0)
+        if (rb.velocity == Vector2.zero && cooldown <= 0)
         {
             Shoot();
         }
