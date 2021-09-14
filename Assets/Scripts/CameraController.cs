@@ -20,10 +20,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float temp = player.maxSpeed/pMaxSpeed;
-        if (temp > currSpeedDiff)
+        if (player.speedMultiplier > currSpeedDiff)
         {
-            currSpeedDiff = temp;
+            currSpeedDiff = player.speedMultiplier;
             ZoomOut(currSpeedDiff);
         }
     }
@@ -31,7 +30,7 @@ public class CameraController : MonoBehaviour
     void ZoomOut(float amount)
     {
         float zoomLevel;
-        zoomLevel = (amount-1)/3f;
-        cam.orthographicSize *= (1+zoomLevel);
+        zoomLevel = (amount-1)/5f;
+        cam.orthographicSize += zoomLevel;
     }
 }

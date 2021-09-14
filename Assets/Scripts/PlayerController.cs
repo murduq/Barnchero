@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float strafeProtection;
     public float iFrameTimer;
     public float maxSpeed = 5f;
+    public float speedMultiplier;
     public int health;
     public int maxHealth = 10;
     public bool isHit = false;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         BulletController bull = bullet.GetComponent<BulletController>();
         bull.resetRicochet();
         burnDamage = 0;
+        speedMultiplier = 1.0f;
     }
 
     void Update()
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
         moveY = Input.GetAxis("Vertical");
 
         // Movement
-        rb.velocity = new Vector2(moveX * maxSpeed, moveY * maxSpeed);
+        rb.velocity = new Vector2(moveX * (maxSpeed*speedMultiplier), moveY * (maxSpeed*speedMultiplier));
         if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Speed":
                 Destroy(trigger.gameObject);
-                maxSpeed *= 1.5f;
+                speedMultiplier += 0.5f;
                 break;
             case "ASpeed":
                 Destroy(trigger.gameObject);

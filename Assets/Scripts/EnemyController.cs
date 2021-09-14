@@ -135,6 +135,7 @@ public class EnemyController : MonoBehaviour
             case "melee":
                 transform.position =
                     Vector2.MoveTowards(transform.position, target, moveSpeed);
+                //rb.velocity = Vector2.MoveTowards(transform.position, target, moveSpeed)*moveSpeed;
                 break;
             case "ranged":
                 transform.up = target - new Vector2(transform.position.x, transform.position.y);
