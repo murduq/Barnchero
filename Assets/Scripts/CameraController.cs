@@ -8,7 +8,8 @@ public class CameraController : MonoBehaviour
     public Camera cam;
     public float pMaxSpeed;
     public float currSpeedDiff;
-    
+    public float zoomDuration = 1.0f;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -23,14 +24,24 @@ public class CameraController : MonoBehaviour
         if (player.speedMultiplier > currSpeedDiff)
         {
             currSpeedDiff = player.speedMultiplier;
-            ZoomOut(currSpeedDiff);
+            StartCoroutine(ZoomOut(currSpeedDiff));
         }
     }
 
-    void ZoomOut(float amount)
+    IEnumerator ZoomOut(float amount)
     {
-        float zoomLevel;
-        zoomLevel = (amount-1)/5f;
-        cam.orthographicSize += zoomLevel;
+        float timeElapsed = 0;
+        float zoomLevel = (amount - 1) / 5f;
+        float ogSize = cam.orthographicSize;
+        while (timeElapsed < zoomDuration)
+        {
+            //cam.orthographicSize += zoomLevel;
+            cam.orthographicSize = Mathf.Lerp(ogSize, ogSize + zoomLevel, timeElapsed / zoomDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        cam.orthographicSize = ogSize + zoomLevel;
+
     }
 }
