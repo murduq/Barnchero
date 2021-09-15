@@ -295,7 +295,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!1818360609 &3349862444369310314
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -356,6 +356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: gradient.m_NumColorKeys
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154806785942794395, guid: 67566b3b6064e24468e8d868651974ae,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.13840461
       objectReference: {fileID: 0}
     - target: {fileID: 3532654767620189867, guid: 67566b3b6064e24468e8d868651974ae,
         type: 3}

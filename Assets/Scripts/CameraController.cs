@@ -35,7 +35,6 @@ public class CameraController : MonoBehaviour
         float ogSize = cam.orthographicSize;
         while (timeElapsed < zoomDuration)
         {
-            //cam.orthographicSize += zoomLevel;
             cam.orthographicSize = Mathf.Lerp(ogSize, ogSize + zoomLevel, timeElapsed / zoomDuration);
             timeElapsed += Time.deltaTime;
             yield return null;
