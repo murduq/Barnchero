@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
     public int burnDamage;
     public int baseHealth = 1;
     public int numEnemies = 1;
+    public float dropRate;
 
     void Awake()
     {
@@ -42,6 +43,7 @@ public class EnemyController : MonoBehaviour
         distanceToCloseEnemy = Mathf.Infinity;
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         closestEnemy = null;
+        dropRate = .5f;
     }
 
     void Update()
@@ -50,8 +52,8 @@ public class EnemyController : MonoBehaviour
         if (allEnemies.Length == 0 && !spawning)
         {
             roundNumber += 1;
-            Debug.Log("round " + roundNumber.ToString() + " starting");
-            Debug.Log(roundNumber % 5);
+            //Debug.Log("round " + roundNumber.ToString() + " starting");
+            //Debug.Log(roundNumber % 5);
             if (roundNumber % 5 == 0)
             {
                 clearBullets();
@@ -98,8 +100,8 @@ public class EnemyController : MonoBehaviour
             }
             if (hp <= 0)
             {
-                Destroy(this.gameObject);
-                if (Random.Range(0f, 5.0f) <= 1.1f)
+                Destroy(this.gameObject);                
+                if (Random.Range(0f, 5.0f)/5.0f <= dropRate)
                 {
                     Drop();
                 }
