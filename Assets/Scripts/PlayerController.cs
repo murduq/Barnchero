@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         moveY = Input.GetAxis("Vertical");
 
         // Movement
-        rb.velocity = new Vector2(moveX * (maxSpeed*speedMultiplier), moveY * (maxSpeed*speedMultiplier));
+        rb.velocity = new Vector2(moveX * (maxSpeed * speedMultiplier), moveY * (maxSpeed * speedMultiplier));
         if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;
