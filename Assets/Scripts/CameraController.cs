@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
     IEnumerator ZoomOut(float amount)
     {
         float timeElapsed = 0;
-        float zoomLevel = (amount - 1) / 5f;
+        float zoomLevel = (amount - 1) / 6f;
         float ogSize = cam.orthographicSize;
         while (timeElapsed < zoomDuration)
         {

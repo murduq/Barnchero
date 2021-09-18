@@ -37,13 +37,16 @@ public class EnemyController : MonoBehaviour
         healthBar.SetMaxHP(hp);
         speed = Random.Range(0.5f, 1.5f);
         type = enemyTypes[Random.Range(0, enemyTypes.Length)];
+        if (type == "ranged" && speed < 1.0f){
+            speed = Random.Range(1.0f, 1.5f);
+        }
         damage = 2;
         cooldown = speed;
         roundNumber = 1;
         distanceToCloseEnemy = Mathf.Infinity;
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         closestEnemy = null;
-        dropRate = .5f;
+        dropRate = .3f;
     }
 
     void Update()

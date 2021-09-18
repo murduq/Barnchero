@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float iFrameTimer;
     public float maxSpeed = 5f;
     public float speedMultiplier;
+    public float damageMultiplier;
     public int health;
     public int maxHealth = 10;
     public bool isHit = false;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         bull.resetRicochet();
         burnDamage = 0;
         speedMultiplier = 1.0f;
+        damageMultiplier = 1.0f;
     }
 
     void Update()
@@ -128,7 +130,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Damage":
                 Destroy(trigger.gameObject);
-                damage = (int)(damage * 1.5f);
+                damageMultiplier += 0.5f;
+                damage = (int)(2 * damageMultiplier);
                 break;
             case "Speed":
                 Destroy(trigger.gameObject);
@@ -136,7 +139,10 @@ public class PlayerController : MonoBehaviour
                 break;
             case "ASpeed":
                 Destroy(trigger.gameObject);
-                maxCooldown *= 0.8f;
+                if (maxCooldown >= 0.001)
+                {
+                    maxCooldown *= 0.9f;
+                }
                 break;
             case "Ricochet":
                 Destroy(trigger.gameObject);
