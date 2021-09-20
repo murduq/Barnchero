@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case "ASpeed":
                 Destroy(trigger.gameObject);
-                if (maxCooldown >= 0.001)
+                if (maxCooldown >= 0.02f)
                 {
                     maxCooldown *= 0.9f;
                 }
