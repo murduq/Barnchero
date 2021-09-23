@@ -12,7 +12,7 @@ public class HealthController : MonoBehaviour
 
     private void Awake()
     {
-        
+        hpText.color = new Color(225,0,255);
     }
 
     private void Update()

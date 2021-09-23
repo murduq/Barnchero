@@ -177,6 +177,7 @@ MonoBehaviour:
   burnDamage: 0
   baseHealth: 1
   numEnemies: 1
+  dropRate: 0
 --- !u!4 &426505726
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +459,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 50.06, y: 50.01}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -620,6 +621,7 @@ MonoBehaviour:
   iFrameTimer: 0
   maxSpeed: 5
   speedMultiplier: 0
+  damageMultiplier: 0
   health: 10
   maxHealth: 10
   isHit: 0
@@ -788,6 +790,36 @@ PrefabInstance:
     - target: {fileID: 1538072275856966970, guid: 15aa98a849eb53d4bb65845bded51caf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139918573675233360, guid: 15aa98a849eb53d4bb65845bded51caf,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139918573675233360, guid: 15aa98a849eb53d4bb65845bded51caf,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139918573675233360, guid: 15aa98a849eb53d4bb65845bded51caf,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.881711
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139918573675233360, guid: 15aa98a849eb53d4bb65845bded51caf,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139918573675233360, guid: 15aa98a849eb53d4bb65845bded51caf,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620767735747935969, guid: 15aa98a849eb53d4bb65845bded51caf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786819052257594961, guid: 15aa98a849eb53d4bb65845bded51caf,
