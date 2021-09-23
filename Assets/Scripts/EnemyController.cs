@@ -123,8 +123,8 @@ public class EnemyController : MonoBehaviour
             if (hit.getBurn() > 0 && !burning)
             {
                 burning = true;
-                burnDamage = hit.getBurn();
                 StartCoroutine(burn());
+                burnDamage = hit.getBurn();                
             }
         }
 

@@ -1,24 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1818360609 &117692974099728965
-RotationConstraint:
+--- !u!114 &3473100379635406333
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4274732688893159827}
+  m_GameObject: {fileID: 3818750679301690506}
   m_Enabled: 1
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_IsContraintActive: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &2982066027243560026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29,22 +25,37 @@ PrefabInstance:
     - target: {fileID: -6806982685598643136, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.7924528
       objectReference: {fileID: 0}
     - target: {fileID: -6806982685598643136, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.7924528
       objectReference: {fileID: 0}
     - target: {fileID: -6806982685598643136, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.6949711
+      value: 0.7924528
       objectReference: {fileID: 0}
-    - target: {fileID: -6806982685598643136, guid: 150a6f07574a2db48abbcb5fd891ba40,
+    - target: {fileID: 187440446237834359, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 8
+      propertyPath: m_SizeDelta.y
+      value: 0.3558
+      objectReference: {fileID: 0}
+    - target: {fileID: 187440446237834359, guid: 150a6f07574a2db48abbcb5fd891ba40,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0011
+      objectReference: {fileID: 0}
+    - target: {fileID: 187440446237834359, guid: 150a6f07574a2db48abbcb5fd891ba40,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0679
+      objectReference: {fileID: 0}
+    - target: {fileID: 252272035421060183, guid: 150a6f07574a2db48abbcb5fd891ba40,
+        type: 3}
+      propertyPath: m_Text
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 1310701405705008585, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
@@ -174,17 +185,12 @@ PrefabInstance:
     - target: {fileID: 8500543069240153849, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.1013
-      objectReference: {fileID: 0}
-    - target: {fileID: 8500543069240153849, guid: 150a6f07574a2db48abbcb5fd891ba40,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.000021711
       objectReference: {fileID: 0}
     - target: {fileID: 8500543069240153849, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015236437
       objectReference: {fileID: 0}
     - target: {fileID: 9102913141651931713, guid: 150a6f07574a2db48abbcb5fd891ba40,
         type: 3}
@@ -196,26 +202,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9102913141651931713, guid: 150a6f07574a2db48abbcb5fd891ba40,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0.011450008
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102913141651931713, guid: 150a6f07574a2db48abbcb5fd891ba40,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102913141651931713, guid: 150a6f07574a2db48abbcb5fd891ba40,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.005725
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 150a6f07574a2db48abbcb5fd891ba40, type: 3}
---- !u!1 &4274732688893159827 stripped
+--- !u!1 &3818750679301690506 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1310701405705008585, guid: 150a6f07574a2db48abbcb5fd891ba40,
+  m_CorrespondingSourceObject: {fileID: 2133721894565955792, guid: 150a6f07574a2db48abbcb5fd891ba40,
     type: 3}
   m_PrefabInstance: {fileID: 2982066027243560026}
   m_PrefabAsset: {fileID: 0}
