@@ -10,12 +10,6 @@ public class HealthController : MonoBehaviour
     public Image fill;
     public Text hpText;
 
-    private void Awake()
-    {
-        if(this.name == "Enemy Health Bar"){
-            //hpText.color = new Color(180,180,180);
-        }
-    }
 
     private void Update()
     {

@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
         currSpeedDiff = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (player.speedMultiplier > currSpeedDiff)
