@@ -133,18 +133,18 @@ public class EnemyController : MonoBehaviour
     void Move()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Vector2 target = players[0].transform.position;
+        Vector3 target = players[0].transform.position;
         float moveSpeed = speed * Time.deltaTime;
         switch (type)
         {
             case "melee":
-                transform.position =
-                    Vector2.MoveTowards(transform.position, target, moveSpeed);
+                //transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed);
                 //TODO: fix this
-                //rb.velocity = Vector2.MoveTowards(target, transform.position, speed)*speed;
+                transform.up = target - this.transform.position;
+                rb.velocity = transform.up * speed;
                 break;
             case "ranged":
-                transform.up = target - new Vector2(transform.position.x, transform.position.y);
+                transform.up = target - transform.position;
                 if (cooldown > 0)
                 {
                     cooldown -= Time.deltaTime;
