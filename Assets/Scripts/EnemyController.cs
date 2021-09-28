@@ -100,10 +100,6 @@ public class EnemyController : MonoBehaviour
         if (this.tag == "Enemy")
         {
             Move();
-            if (burning)
-            {
-
-            }
             if (hp <= 0)
             {
                 Destroy(this.gameObject);                
@@ -133,6 +129,10 @@ public class EnemyController : MonoBehaviour
                 StartCoroutine(burn());
                 burnDamage = hit.getBurn();                
             }
+        }
+        else if (collision.gameObject.tag == "Enemy") {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            collision.collider.attachedRigidbody.velocity = Vector2.zero;
         }
 
     }
