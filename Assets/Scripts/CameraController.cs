@@ -40,6 +40,11 @@ public class CameraController : MonoBehaviour
         }
 
         cam.orthographicSize = ogSize + zoomLevel;
-
     }
+
+    public float GetSize()
+    {
+        return cam.orthographicSize;
+    }
+
 }

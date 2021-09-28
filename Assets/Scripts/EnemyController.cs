@@ -28,6 +28,8 @@ public class EnemyController : MonoBehaviour
     public int baseHealth = 1;
     public int numEnemies = 1;
     public float dropRate;
+    public float camSize;
+    public CameraController cam;
 
     void Awake()
     {
@@ -47,6 +49,7 @@ public class EnemyController : MonoBehaviour
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         closestEnemy = null;
         dropRate = .3f;
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
     }
 
     void Update()
@@ -110,6 +113,10 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+        else 
+        {
+            camSize = cam.GetSize();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -138,8 +145,6 @@ public class EnemyController : MonoBehaviour
         switch (type)
         {
             case "melee":
-                //transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed);
-                //TODO: fix this
                 transform.up = target - this.transform.position;
                 rb.velocity = transform.up * speed;
                 break;
@@ -161,7 +166,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator spawn()
     {
-        Vector2 coords = new Vector2(Random.Range(-3.7f, 3.7f), Random.Range(-4.3f, 4.3f));
+        Vector2 coords = new Vector2(Random.Range(-1*(camSize-1.3f), camSize-1.3f), Random.Range(-1*(camSize-0.7f), camSize-0.7f));
         Instantiate(spawnCircle, coords, Quaternion.identity);
         yield return new WaitForSeconds(1);
         Instantiate(spawnedEnemy, coords, Quaternion.identity);
